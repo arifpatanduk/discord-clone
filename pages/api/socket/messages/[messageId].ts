@@ -114,7 +114,7 @@ export default async function handler(
     }
 
     // if the request is PATCH (updating)
-    if (req.method === "DELETE") {
+    if (req.method === "PATCH") {
       // check the owner first
       if (!isMessageOwner) {
         return res.status(401).json({ error: "Unauthorized" });
