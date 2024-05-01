@@ -44,11 +44,14 @@ export const useChatScroll = ({
         return true;
       }
 
-      if (!topDiv) return false;
+      if (!topDiv) {
+        return false;
+      }
 
       //   if user is far from the bottom, dont auto scroll it
       const distanceFromBottom =
         topDiv.scrollHeight - topDiv.scrollTop - topDiv.clientHeight;
+
       return distanceFromBottom <= 100;
     };
 
