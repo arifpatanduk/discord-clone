@@ -8,6 +8,7 @@ import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { ChannelType } from "@prisma/client";
+import { MediaRoom } from "@/components/media-room";
 
 interface ChannelIdPageProps {
   params: {
@@ -45,6 +46,8 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
         serverId={channel.serverId}
         type="channel"
       />
+
+      {/* text chat */}
       {channel.type === ChannelType.TEXT && (
         <>
           <ChatMessages
@@ -71,6 +74,16 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
             }}
           />
         </>
+      )}
+
+      {/* audio chat */}
+      {channel.type === ChannelType.AUDIO && (
+        <MediaRoom chatId={channel.id} video={false} audio={true} />
+      )}
+
+      {/* video chat */}
+      {channel.type === ChannelType.VIDEO && (
+        <MediaRoom chatId={channel.id} video={true} audio={true} />
       )}
     </div>
   );
